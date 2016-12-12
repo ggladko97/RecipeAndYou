@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#061E46"
+
+    tools:context="pl.rzeszow.wsiz.zhekabandit97.recipe4u.MainActivity" android:layout_height="match_parent"
+     android:layout_width="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/LL0"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/LL0"
+        android:layout_alignParentEnd="true">
+        <!--<GridView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:numColumns="2"-->
+            <!--android:id="@+id/gridViewMain">-->
+        <!--</GridView>-->
+        <ListView
+            android:layout_width="match_parent"
+            android:background="#446EB5"
+            android:minHeight="50pt"
+            android:layout_height="wrap_content"
+            android:id="@+id/listResults">
+        </ListView>
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextInput"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+
+        android:hint="Start typing here"
+        android:textColorHint="#ffffff"
+
+
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/imageButton"
+        android:layout_marginTop="20dp"
+    android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/editTextInput" />
+
+
+</RelativeLayout>
