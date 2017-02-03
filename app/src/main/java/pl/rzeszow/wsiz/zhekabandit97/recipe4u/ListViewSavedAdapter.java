@@ -13,31 +13,30 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by ggladko97 on 11.12.16.
+ * Created by ggladko97 on 21.12.16.
  */
-public class ListViewAdapter extends ArrayAdapter<Recipe> {
-    public ListViewAdapter(Context context, int resource) {
+public class ListViewSavedAdapter extends ArrayAdapter<Recipe> {
+    public ListViewSavedAdapter(Context context, int resource) {
         super(context, resource);
     }
-    public ListViewAdapter(Context context, int resource, List<Recipe> items) {
+    public ListViewSavedAdapter(Context context, int resource, List<Recipe> items) {
         super(context, resource, items);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = convertView;
-
-        if (v == null) {
+        View view  = convertView;
+        if (view == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.customlist, null);
+            view = vi.inflate(R.layout.customlist, null);
         }
-
-        Recipe r = getItem(position);
-
+        final Recipe r = getItem(position);
         if (r != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.textCustom);
-            ImageView iv1 = (ImageView)v.findViewById(R.id.imageCustom);
+            TextView tt1 = (TextView) view.findViewById(R.id.textCustom);
+            ImageView iv1 = (ImageView)view.findViewById(R.id.imageCustom);
+
 
             if (tt1 != null) {
                 tt1.setText(r.getName());
@@ -49,6 +48,8 @@ public class ListViewAdapter extends ArrayAdapter<Recipe> {
                         .fit().into(iv1);
             }
         }
-        return v;
+        view.setLayoutParams(new ViewGroup.LayoutParams(600,350));
+
+        return view;
     }
 }

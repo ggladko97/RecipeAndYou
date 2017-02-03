@@ -3,4 +3,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="textDesc">This is the revolutionary app for your kitchen. How do you search recipes?
+        This app is simple to use, showing you only best of the best recipes you can rely on.\n\n
+        First, type TWO your top ingredients which you want your dish will consist of
+    </string>
+    <string name="textDesc1">You will be provided with useful tips while typing. You can also try to use your own ingredients </string>
+    <string name="textDesc2" >You will have beautiful recipes, for full description tap one and go online</string>
+    <string name="textDesc3" >Vied recipes are always with you in SAVED. You can easily clean list by long click </string>
+    <string name="textDesc4" >Your last search is completely in LAST SEARCH</string>
 </resources>

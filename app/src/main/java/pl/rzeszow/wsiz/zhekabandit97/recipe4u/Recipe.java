@@ -1,5 +1,8 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by ggladko97 on 04.12.16.
  */
@@ -9,16 +12,40 @@ public class Recipe {
     private String url_image;
     private String rate;
     private String publisher;
+    private boolean isSearched=false;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String url_recipe, String url_image, String rate, String publisher) {
+    public Recipe(String name, String url_recipe, String url_image, String rate, String publisher,boolean isSearched) {
         this.name = name;
         this.url_recipe = url_recipe;
         this.url_image = url_image;
         this.rate = rate;
         this.publisher = publisher;
+        this.isSearched = isSearched;
+    }
+    public Recipe(String name, String url_recipe, String url_image, String rate, String publisher){
+        this.name = name;
+        this.url_recipe = url_recipe;
+        this.url_image = url_image;
+        this.rate = rate;
+        this.publisher = publisher;
+    }
+
+    public JSONObject getJSONObject() {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("name", name);
+            obj.put("url_recipe", url_recipe);
+            obj.put("url_image", url_image);
+            obj.put("rate", rate);
+            obj.put("publisher", publisher);
+            obj.put("isSearched", isSearched);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
     public String getName() {
@@ -60,4 +87,14 @@ public class Recipe {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
+    public boolean isSearched() {
+        return isSearched;
+    }
+
+    public void setSearched(boolean searched) {
+        isSearched = searched;
+    }
+
+
 }

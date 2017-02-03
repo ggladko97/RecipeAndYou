@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#061E46"
+
+    tools:context="pl.rzeszow.wsiz.zhekabandit97.recipe4u.SearchFragment" android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#59bdff">
+
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextInput"
+            android:layout_margin="15dp"
+            android:hint="Type ingridient"
+            android:layout_marginLeft="50dp"
+            android:textSize="14pt" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton"
+            android:src="@drawable/greenok"
+            android:background="#59bdff"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listResults"
+            android:layout_gravity="center_horizontal"
+            android:background="#59bdff" />
+    </LinearLayout>
+</LinearLayout>

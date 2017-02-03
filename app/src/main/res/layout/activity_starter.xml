@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/layoutTop"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="RECIPE2U"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="125dp"
+            android:textColor="#65737d"
+            android:paddingRight="125dp"
+            android:textStyle="italic"
+            android:background="#22282d"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:background="#22282d">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSearch"
+                android:src="@drawable/search"
+                android:background="#22282d" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ibLastSearched"
+                android:src="@drawable/coffee"
+                android:background="#22282d"
+                android:layout_marginTop="7dp"
+                android:paddingLeft="7dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnFavorite"
+                android:src="@drawable/pen"
+                android:background="#22282d"
+                android:paddingLeft="10dp" />
+
+            <ImageButton
+                android:layout_width="75dp"
+                android:layout_height="66dp"
+                android:id="@+id/btnAbout"
+                android:src="@drawable/about"
+                android:background="#22282d"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#22282d">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="SEARCH"
+            android:id="@+id/textView"
+            android:textColor="#65737d"
+            android:layout_marginLeft="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="LAST SEARCH"
+            android:id="@+id/textView3"
+            android:layout_marginLeft="20dp"
+            android:textColor="#65737d" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="SAVED"
+            android:id="@+id/textView4"
+            android:layout_marginLeft="25dp"
+            android:textColor="#65737d" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="ABOUT"
+            android:id="@+id/textView5"
+            android:textColor="#65737d"
+            android:layout_marginLeft="42dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameContainer"></FrameLayout>
+
+</LinearLayout>
