@@ -11,43 +11,50 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class StarterActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener,SearchFragment.OnLastSearchFragmentListener {
-    ImageButton ibSearch,ibLastSearched,ibSaved,ibAbout;
-    SearchFragment searchFragment;
-    SavedFragment savedFragment;
-    LastFragment lastFragment;
-    InfoFragment infoFragment;
-    ArrayList<Recipe>result = new ArrayList<>();
-    ArrayList<Recipe>arrayResultForAdapter=null;
-    ArrayList<Recipe>allRecipesFromSearch = new ArrayList<>();
+public class StarterActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener,
+        SearchFragment.OnLastSearchFragmentListener {
+    private ImageButton ibSearch, ibLastSearched, ibSaved, ibAbout;
+    private SearchFragment searchFragment;
+    private SavedFragment savedFragment;
+    private LastFragment lastFragment;
+    private InfoFragment infoFragment;
+    private List<Recipe> result;
+    private List<Recipe> arrayResultForAdapter;
+    private List<Recipe> allRecipesFromSearch;
+
+    public StarterActivity() {
+        result = new ArrayList<>();
+        arrayResultForAdapter = null;
+        allRecipesFromSearch = new ArrayList<>();
+    }
 
 
-    public ArrayList<Recipe> getAllRecipesFromSearch() {
+    public List<Recipe> getAllRecipesFromSearch() {
         return allRecipesFromSearch;
     }
 
-    public ArrayList<Recipe> getArrayResultForAdapter() {
+    public List<Recipe> getArrayResultForAdapter() {
         return arrayResultForAdapter;
     }
 
-    public ArrayList<Recipe> getResult() {
-        if(result!=null){
+    public List<Recipe> getResult() {
+        if (result != null) {
             return result;
-        }
-        else{
+        } else {
             throw new NullPointerException();
         }
 
     }
 
 
-private boolean isNetworkConnected() {
-    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-    return cm.getActiveNetworkInfo() != null;
-}
+        return cm.getActiveNetworkInfo() != null;
+    }
 
 
     @Override
@@ -62,17 +69,17 @@ private boolean isNetworkConnected() {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starter);
-        ibSearch = (ImageButton)findViewById(R.id.btnSearch);
-        ibLastSearched = (ImageButton)findViewById(R.id.ibLastSearched);
-        ibSaved = (ImageButton)findViewById(R.id.btnFavorite);
-        ibAbout = (ImageButton)findViewById(R.id.btnAbout);
+        ibSearch = (ImageButton) findViewById(R.id.btnSearch);
+        ibLastSearched = (ImageButton) findViewById(R.id.ibLastSearched);
+        ibSaved = (ImageButton) findViewById(R.id.btnFavorite);
+        ibAbout = (ImageButton) findViewById(R.id.btnAbout);
 
 
         ibSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                searchFragment =  new SearchFragment();
+                searchFragment = new SearchFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameContainer, searchFragment).commit();
 
@@ -94,7 +101,7 @@ private boolean isNetworkConnected() {
                 arrayResultForAdapter = new ArrayList<>(resultSet);
                 savedFragment = new SavedFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frameContainer,savedFragment).commit();
+                transaction.replace(R.id.frameContainer, savedFragment).commit();
 
             }
         });
@@ -111,8 +118,8 @@ private boolean isNetworkConnected() {
     }
 
     private void checkNetworkConnection() {
-        if(isNetworkConnected()==false){
-            Toast.makeText(this,"No internet connection",Toast.LENGTH_LONG).show();
+        if (isNetworkConnected() == false) {
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -125,7 +132,6 @@ private boolean isNetworkConnected() {
     @Override
     protected void onPause() {
         super.onPause();
-
 
 
     }
@@ -145,12 +151,12 @@ private boolean isNetworkConnected() {
 
 
     @Override
-    public void onFragmentSetRecipes(ArrayList<Recipe> input) {
-        result=input;
+    public void onFragmentSetRecipes(List<Recipe> input) {
+        result = input;
     }
 
     @Override
-    public void onLastSearchSetRecipes(ArrayList<Recipe> input) {
-        allRecipesFromSearch=input;
+    public void onLastSearchSetRecipes(List<Recipe> input) {
+        allRecipesFromSearch = input;
     }
 }

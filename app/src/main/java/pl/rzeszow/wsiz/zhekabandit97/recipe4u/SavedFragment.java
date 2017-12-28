@@ -17,22 +17,29 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
 public class SavedFragment extends Fragment {
-    ListView listViewSaved;
-    ArrayList <Recipe> savedRecipes = new ArrayList<>();
-    Set<Recipe> tempSet = new HashSet<>();
-    StarterActivity activity= new StarterActivity();
-    SharedPreferences settings;
+    private ListView listViewSaved;
+    private List<Recipe> savedRecipes;
+    private Set<Recipe> tempSet;
+    private StarterActivity activity;
+    private SharedPreferences settings;
+
+    public SavedFragment() {
+        savedRecipes = new ArrayList<>();
+        tempSet = new HashSet<>();
+        activity = new StarterActivity();
+    }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.i("onPause",activity.getArrayResultForAdapter().toString());
+        Log.i("onPause", activity.getArrayResultForAdapter().toString());
         SharedPreferences.Editor editor;
-        settings =  getActivity().getSharedPreferences(
+        settings = getActivity().getSharedPreferences(
                 "Saved", Context.MODE_PRIVATE);
         editor = settings.edit();
         Gson gson = new Gson();
@@ -44,7 +51,7 @@ public class SavedFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        settings =  getActivity().getSharedPreferences(
+        settings = getActivity().getSharedPreferences(
                 "Saved", Context.MODE_PRIVATE);
     }
 
@@ -56,17 +63,17 @@ public class SavedFragment extends Fragment {
             Gson gson = new Gson();
             Recipe[] items = gson.fromJson(jsonItems, Recipe[].class);
 
-            for(int i=0;i<items.length;i++){
+            for (int i = 0; i < items.length; i++) {
                 //savedRecipes.add(items[i]);
                 tempSet.add(items[i]);
             }
             savedRecipes.addAll(tempSet);
         }
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_saved,container,false);
-        activity = (StarterActivity)getActivity();
+        View view = inflater.inflate(R.layout.fragment_saved, container, false);
+        activity = (StarterActivity) getActivity();
 
-        ArrayList <Recipe> arrivedRecipes = new ArrayList<>(activity.getArrayResultForAdapter());
+        List<Recipe> arrivedRecipes = new ArrayList<>(activity.getArrayResultForAdapter());
         savedRecipes.addAll(arrivedRecipes);
 
         tempSet.addAll(savedRecipes);
@@ -74,17 +81,15 @@ public class SavedFragment extends Fragment {
         savedRecipes.addAll(tempSet);
 
 
-        listViewSaved = (ListView)view.findViewById(R.id.listViewSavedMain);
-        final ListViewSavedAdapter myAdapter = new ListViewSavedAdapter(this.getActivity(),R.layout.customlist,savedRecipes);
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
-//                android.R.layout.simple_list_item_1, titles);
+        listViewSaved = (ListView) view.findViewById(R.id.listViewSavedMain);
+        final ListViewSavedAdapter myAdapter = new ListViewSavedAdapter(this.getActivity(), R.layout.customlist, savedRecipes);
+
         listViewSaved.setAdapter(myAdapter);
 
         listViewSaved.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<Recipe>recipesTempList = new ArrayList<>(savedRecipes);
+                List<Recipe> recipesTempList = new ArrayList<>(savedRecipes);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(recipesTempList.get(position).getUrl_recipe()));
                 startActivity(i);
@@ -95,19 +100,14 @@ public class SavedFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 myAdapter.remove(savedRecipes.get(position));
-                Log.i("onlongclick","true");
+                Log.i("onlongclick", "true");
                 myAdapter.notifyDataSetChanged();
                 return false;
             }
         });
 
 
-
-
-
         return view;
-
-
 
 
     }

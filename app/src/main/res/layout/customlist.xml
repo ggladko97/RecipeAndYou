@@ -1,43 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="450dp"
-    android:descendantFocusability="blocksDescendants">
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/imageCustom"-->
-            <!--android:layout_gravity="left|top"-->
-            <!--android:background="@drawable/frameforgrid"-->
-            <!--android:layout_weight="4"/>-->
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:minLines="2"-->
-            <!--android:id="@+id/textCustom"-->
-
-            <!--android:layout_weight="2"/>-->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="10dp"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
 
 
     <ImageView
-        android:layout_width="150dp"
-
-        android:layout_height="150dp"
         android:id="@+id/imageCustom"
+
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="left|top"
-        android:descendantFocusability="blocksDescendants"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:descendantFocusability="blocksDescendants" />
 
     <TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:textSize="14pt"
         android:id="@+id/textCustom"
-        android:descendantFocusability="blocksDescendants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="165dp"
-         />
+        android:descendantFocusability="blocksDescendants"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="14pt" />
 
 </FrameLayout>

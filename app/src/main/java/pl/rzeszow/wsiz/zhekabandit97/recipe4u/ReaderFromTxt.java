@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ggladko97 on 02.01.17.
@@ -20,9 +21,9 @@ public class ReaderFromTxt {
         this.context = context;
     }
 
-    public ArrayList<String> ReadTextFromFile(String file) {
-        ArrayList<String> listOfIngredientsFromTxt = new ArrayList<>();
-        String data = "";
+    public List<String> ReadTextFromFile(String file) {
+        List<String> listOfIngredientsFromTxt = new ArrayList<>();
+
         AssetManager assetManager = context.getResources().getAssets();
         InputStream inputStream = null;
         try {
