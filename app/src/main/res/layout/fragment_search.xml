@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="#061E46"
 
-    tools:context="pl.rzeszow.wsiz.zhekabandit97.recipe4u.SearchFragment" android:layout_height="match_parent"
+    tools:context="pl.rzeszow.wsiz.zhekabandit97.recipe4u.old.SearchFragment" android:layout_height="match_parent"
     android:layout_width="match_parent">
 
 

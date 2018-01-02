@@ -1,4 +1,4 @@
-package pl.rzeszow.wsiz.zhekabandit97.recipe4u;
+package pl.rzeszow.wsiz.zhekabandit97.recipe4u.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;

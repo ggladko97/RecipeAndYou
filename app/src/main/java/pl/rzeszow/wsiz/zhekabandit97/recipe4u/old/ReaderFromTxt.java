@@ -1,4 +1,4 @@
-package pl.rzeszow.wsiz.zhekabandit97.recipe4u;
+package pl.rzeszow.wsiz.zhekabandit97.recipe4u.old;
 
 import android.content.Context;
 import android.content.res.AssetManager;

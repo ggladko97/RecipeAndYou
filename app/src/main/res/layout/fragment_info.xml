@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="pl.rzeszow.wsiz.zhekabandit97.recipe4u.InfoFragment">
+    tools:context="pl.rzeszow.wsiz.zhekabandit97.recipe4u.old.InfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

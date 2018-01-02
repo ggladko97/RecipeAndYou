@@ -1,4 +1,4 @@
-package pl.rzeszow.wsiz.zhekabandit97.recipe4u;
+package pl.rzeszow.wsiz.zhekabandit97.recipe4u.old;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
 
 /**
  * Created by ggladko97 on 11.12.16.

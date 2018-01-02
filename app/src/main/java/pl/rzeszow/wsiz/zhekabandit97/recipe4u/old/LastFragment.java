@@ -1,4 +1,4 @@
-package pl.rzeszow.wsiz.zhekabandit97.recipe4u;
+package pl.rzeszow.wsiz.zhekabandit97.recipe4u.old;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
+
 public class LastFragment extends Fragment {
     private ListView listView;
 
@@ -23,7 +26,7 @@ public class LastFragment extends Fragment {
         final StarterActivity activity = (StarterActivity) getActivity();
 
         listView = (ListView) view.findViewById(R.id.listViewLastMain);
-        ListViewLastAdapter myAdapter = new ListViewLastAdapter(this.getActivity(), R.layout.customlist, activity.getAllRecipesFromSearch());
+        ListViewSearchAdapter myAdapter = new ListViewSearchAdapter(this.getActivity(), R.layout.customlist, activity.getAllRecipesFromSearch());
 
         listView.setAdapter(myAdapter);
 
