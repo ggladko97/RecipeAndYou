@@ -21,6 +21,7 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
 
     @Override
     public String load() {
+        view.sayHello();
         return data;
     }
 
