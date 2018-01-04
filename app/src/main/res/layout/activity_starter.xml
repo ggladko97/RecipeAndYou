@@ -119,9 +119,11 @@
             android:layout_marginLeft="42dp" />
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frameContainer"></FrameLayout>
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/frameContainer"></FrameLayout>-->
+<include layout="@layout/recipe_fragment"/>
+
 
 </LinearLayout>

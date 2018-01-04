@@ -24,7 +24,7 @@
             <!--</intent-filter> />-->
         <!--</activity>-->
 
-        <activity android:name=".old.StarterActivity">
+        <activity android:name=".view.StarterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

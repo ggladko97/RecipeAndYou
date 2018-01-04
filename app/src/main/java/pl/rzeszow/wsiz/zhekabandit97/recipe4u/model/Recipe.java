@@ -3,9 +3,6 @@ package pl.rzeszow.wsiz.zhekabandit97.recipe4u.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
  * Created by ggladko97 on 04.12.16.
  */
@@ -53,4 +50,42 @@ public class Recipe {
         return url_image;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUrl_recipe(String url_recipe) {
+        this.url_recipe = url_recipe;
+    }
+
+    public void setUrl_image(String url_image) {
+        this.url_image = url_image;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "name='" + name + '\'' +
+                ", url_recipe='" + url_recipe + '\'' +
+                ", url_image='" + url_image + '\'' +
+                ", rate='" + rate + '\'' +
+                ", publisher='" + publisher + '\'' +
+                '}';
+    }
 }

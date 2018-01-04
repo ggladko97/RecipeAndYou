@@ -9,8 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
@@ -41,7 +39,7 @@ public class RecipeDAOImpl {
         Map<String, String> sendParams = new LinkedHashMap<>();
         sendParams.put("key", "df1d6675a7c13f706153981911c5bdd8");
         StringBuilder tail = new StringBuilder();
-        for (int i = 1; i < params.length; i++) {
+        for (int i = 0; i < params.length; i++) {
             if (params[i].contains(" ")) {
                 try {
                     params[i].replace(" ", "_");
