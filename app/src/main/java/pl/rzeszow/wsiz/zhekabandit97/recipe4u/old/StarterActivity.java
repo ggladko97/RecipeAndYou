@@ -1,22 +1,5 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u.old;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
-
 //public class StarterActivity extends AppCompatActivity implements SearchFragment.OnFragmentInteractionListener,
 //        SearchFragment.OnLastSearchFragmentListener {
 //    private ImageButton ibSearch, ibLastSearched, ibSaved, ibAbout;

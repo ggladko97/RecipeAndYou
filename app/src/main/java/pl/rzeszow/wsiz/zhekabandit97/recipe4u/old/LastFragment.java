@@ -1,19 +1,5 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u.old;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
 //
 //public class LastFragment extends Fragment {
 //    private ListView listView;

@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 
 /**
  * Created by ggladko97 on 11.12.16.

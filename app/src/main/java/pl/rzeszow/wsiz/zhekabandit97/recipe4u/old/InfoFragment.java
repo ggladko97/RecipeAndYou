@@ -1,25 +1,5 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u.old;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.List;
-
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.RecipeDAOImpl;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.FirstPresenter;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.SearchRecipesContract;
-import retrofit2.Call;
 //
 //public class InfoFragment extends Fragment implements SearchRecipesContract.View{
 //
@@ -39,7 +19,7 @@ import retrofit2.Call;
 //
 //    @Override
 //    public void sayHello() {
-//        RecipeDAOImpl dao = new RecipeDAOImpl();
+//        FoodApiInterfaceImpl dao = new FoodApiInterfaceImpl();
 //        String [] prods = new String[] {"Onion","Tomato"};
 //        Call<JSONObject> recipesByAllTitles = null;
 //        try {

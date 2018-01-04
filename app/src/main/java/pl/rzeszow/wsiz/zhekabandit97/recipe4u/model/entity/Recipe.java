@@ -1,4 +1,4 @@
-package pl.rzeszow.wsiz.zhekabandit97.recipe4u.model;
+package pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,15 +8,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Recipe {
 
-    @SerializedName("name")
+    @SerializedName("title")
     @Expose
     private String name;
 
-    @SerializedName("url_recipe")
+    @SerializedName("f2f_url")
     @Expose
     private String url_recipe;
 
-    @SerializedName("url_image")
+    @SerializedName("image_url")
     @Expose
     private String url_image;
 
@@ -28,13 +28,7 @@ public class Recipe {
     @Expose
     private String publisher;
 
-    public Recipe(String name, String url_recipe, String url_image, String rate, String publisher) {
-        this.name = name;
-        this.url_recipe = url_recipe;
-        this.url_image = url_image;
-        this.rate = rate;
-        this.publisher = publisher;
-    }
+
 
     public String getName() {
         return name;

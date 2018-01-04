@@ -4,14 +4,15 @@ import android.text.Editable;
 import android.util.Log;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.RecipeDAOImpl;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.FoodApiInterfaceImpl;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.RecipeResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,11 +25,11 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
 
     private SearchRecipesContract.View view;
     private String data = "hello world";
-    private RecipeDAOImpl helper;
+    private FoodApiInterfaceImpl helper;
     private List<String> searchParams;
 
     public FirstPresenter() {
-        helper = new RecipeDAOImpl();
+        helper = new FoodApiInterfaceImpl();
         searchParams = new ArrayList<>();
     }
 
@@ -59,26 +60,23 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
         if (searchParams.size() > 1) view.notifyEmptySearch();
         else {
             Log.i("Search params = ", searchParams.toString());
-            Call<JSONObject> recipesByAllTitles = helper.getRecipesByAllTitles(searchParams.toArray(new String[searchParams.size()]));
+            Call<RecipeResponse> recipesByAllTitles = helper.getRecipesByAllTitles(searchParams.toArray(new String[searchParams.size()]));
 
             String s = recipesByAllTitles.request().url().toString();
             Log.i("Search url = ", s);
-            recipesByAllTitles.enqueue(new Callback<JSONObject>() {
+            recipesByAllTitles.enqueue(new Callback<RecipeResponse>() {
                 @Override
-                public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-                    JSONObject body = response.body();
-                    try {
-                        Log.i("BODY: ", body.toString());
-                        List<Recipe> recipes = (List<Recipe>) body.get("recipes");
-                        System.out.println(recipes);
-                        view.updateRecipes(recipes);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+                    RecipeResponse body = response.body();
+
+                    for (Recipe r : body.getRecipes()) {
+                        Log.i("R: ", r.toString());
                     }
+                    view.updateRecipes(Arrays.asList(body.getRecipes()));
                 }
 
                 @Override
-                public void onFailure(Call<JSONObject> call, Throwable t) {
+                public void onFailure(Call<RecipeResponse> call, Throwable t) {
                     view.onCallError(t);
                 }
             });

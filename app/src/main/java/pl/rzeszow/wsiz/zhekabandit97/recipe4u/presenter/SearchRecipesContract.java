@@ -2,7 +2,7 @@ package pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter;
 
 import java.util.List;
 
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 
 /**
  * Created by hladlyev on 02.01.2018.

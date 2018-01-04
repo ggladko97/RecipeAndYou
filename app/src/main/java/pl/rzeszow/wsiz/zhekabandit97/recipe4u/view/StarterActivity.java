@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.Recipe;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.old.ListViewSearchAdapter;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.FirstPresenter;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.SearchRecipesContract;

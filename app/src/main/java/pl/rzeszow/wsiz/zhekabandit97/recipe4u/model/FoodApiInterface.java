@@ -1,14 +1,10 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u.model;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.RecipeResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 /**
@@ -18,5 +14,5 @@ import retrofit2.http.QueryMap;
 public interface FoodApiInterface {
 
     @GET("/api/search")
-    Call<JSONObject> getRecipes(@QueryMap Map<String, String> params);
+    Call<RecipeResponse> getRecipes(@QueryMap Map<String, String> params);
 }
