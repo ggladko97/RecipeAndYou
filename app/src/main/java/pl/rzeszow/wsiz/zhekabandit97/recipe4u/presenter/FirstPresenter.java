@@ -27,6 +27,8 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
     private String data = "hello world";
     private FoodApiInterfaceImpl helper;
     private List<String> searchParams;
+    private List<Recipe> searchedRecipes;
+    private static List<Recipe> savedRecipes = new ArrayList<>();
 
     public FirstPresenter() {
         helper = new FoodApiInterfaceImpl();
@@ -68,11 +70,9 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
                 @Override
                 public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                     RecipeResponse body = response.body();
+                    searchedRecipes = Arrays.asList(body.getRecipes());
 
-                    for (Recipe r : body.getRecipes()) {
-                        Log.i("R: ", r.toString());
-                    }
-                    view.updateRecipes(Arrays.asList(body.getRecipes()));
+                    view.updateRecipes(searchedRecipes);
                 }
 
                 @Override
@@ -80,6 +80,17 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
                     view.onCallError(t);
                 }
             });
+        }
+    }
+
+    public void saveSelectedRecipe(int i) {
+        Log.i("Save", searchedRecipes.get(i).toString());
+        savedRecipes.add(searchedRecipes.get(i));
+    }
+
+    public void updateSavedRecipes() {
+        if (savedRecipes.size() > 0) {
+            view.updateRecipes(savedRecipes);
         }
     }
 }

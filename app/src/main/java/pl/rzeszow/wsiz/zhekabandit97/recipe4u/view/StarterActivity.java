@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -70,20 +69,20 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
             ibSearchRecipe.setOnClickListener(l -> {
                 try {
                     presenter.processRecipesSearch();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             });
-
+//            presenter.hideSearchBox();
         });
+
         ibLastSearched.setOnClickListener(v -> presenter.hideSearchBox());
-        ibSaved.setOnClickListener(v -> presenter.hideSearchBox());
-        ibAbout.setOnClickListener(v -> {
-
-
+        ibSaved.setOnClickListener(v -> {
+            presenter.hideSearchBox();
+            presenter.updateSavedRecipes();
         });
+        ibAbout.setOnClickListener(v -> presenter.hideSearchBox());
+        listView.setOnItemClickListener((adapterView, view, i, l) -> presenter.saveSelectedRecipe(i));
     }
 
     @Override

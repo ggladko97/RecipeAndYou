@@ -37,7 +37,6 @@ public class ListViewSearchAdapter extends ArrayAdapter<Recipe> {
             vi = LayoutInflater.from(getContext());
             v = vi.inflate(R.layout.customlist, null);
         }
-
         final Recipe r = getItem(position);
 
         if (r != null) {
