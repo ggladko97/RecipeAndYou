@@ -76,10 +76,6 @@ public class Recipe {
     public String toString() {
         return "Recipe{" +
                 "name='" + name + '\'' +
-                ", url_recipe='" + url_recipe + '\'' +
-                ", url_image='" + url_image + '\'' +
-                ", rate='" + rate + '\'' +
-                ", publisher='" + publisher + '\'' +
                 '}';
     }
 }

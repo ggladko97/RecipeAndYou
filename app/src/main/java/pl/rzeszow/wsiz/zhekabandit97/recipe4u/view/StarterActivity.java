@@ -2,6 +2,7 @@ package pl.rzeszow.wsiz.zhekabandit97.recipe4u.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
@@ -79,20 +80,14 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
         ibLastSearched.setOnClickListener(v -> presenter.hideSearchBox());
         ibSaved.setOnClickListener(v -> {
             presenter.hideSearchBox();
+            presenter.clearRecipes();
             presenter.updateSavedRecipes();
         });
         ibAbout.setOnClickListener(v -> presenter.hideSearchBox());
-        listView.setOnItemClickListener((adapterView, view, i, l) -> presenter.saveSelectedRecipe(i));
-    }
-
-    @Override
-    public void sayHello() {
-
-    }
-
-    @Override
-    public void displayRecipes(List<Recipe> recievedRecipes) {
-
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Log.i("Clicked", "true " + i);
+            presenter.saveSelectedRecipe(i);
+        });
     }
 
     @Override
@@ -112,6 +107,7 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
 
     @Override
     public void updateRecipes(List<Recipe> recipes) {
+        Log.i("Update in act", recipes.toString());
         adapter = new ListViewSearchAdapter(StarterActivity.this, R.layout.customlist, recipes);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -120,5 +116,10 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     @Override
     public void onCallError(Throwable t) {
         Toast.makeText(this, "Error: \n" + t.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void clearListView() {
+        adapter = null;
     }
 }

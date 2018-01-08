@@ -93,4 +93,8 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
             view.updateRecipes(savedRecipes);
         }
     }
+
+    public void clearRecipes() {
+        view.clearListView();
+    }
 }
