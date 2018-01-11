@@ -7,12 +7,13 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.FoodApiInterfaceImpl;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAO;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAOStaticImpl;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.RecipeResponse;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.view.RecipeAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,15 +25,17 @@ import retrofit2.Response;
 public class FirstPresenter implements SearchRecipesContract.Presenter {
 
     private SearchRecipesContract.View view;
+    private RecipeAdapter adapter;
     private String data = "hello world";
     private FoodApiInterfaceImpl helper;
     private List<String> searchParams;
-    private List<Recipe> searchedRecipes;
-    private static List<Recipe> savedRecipes = new ArrayList<>();
+    private RecipeDAO recipeDao;
 
     public FirstPresenter() {
         helper = new FoodApiInterfaceImpl();
         searchParams = new ArrayList<>();
+        recipeDao = new RecipeDAOStaticImpl();
+        adapter = new RecipeAdapter(recipeDao, false);
     }
 
     @Override
@@ -70,9 +73,7 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
                 @Override
                 public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                     RecipeResponse body = response.body();
-                    searchedRecipes = Arrays.asList(body.getRecipes());
-
-                    view.updateRecipes(searchedRecipes);
+                    recipeDao.addAllRecipesFromLoad(body.getRecipes());
                 }
 
                 @Override
@@ -83,18 +84,9 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
         }
     }
 
-    public void saveSelectedRecipe(int i) {
-        Log.i("Save", searchedRecipes.get(i).toString());
-        savedRecipes.add(searchedRecipes.get(i));
-    }
 
-    public void updateSavedRecipes() {
-        if (savedRecipes.size() > 0) {
-            view.updateRecipes(savedRecipes);
-        }
-    }
-
-    public void clearRecipes() {
-        view.clearListView();
+    public void displaySavedRecipes() {
+      adapter.setSavedMode(true);
+      adapter.notifyDataSetChanged();
     }
 }

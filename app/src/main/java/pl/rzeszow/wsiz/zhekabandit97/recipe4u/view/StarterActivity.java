@@ -2,22 +2,19 @@ package pl.rzeszow.wsiz.zhekabandit97.recipe4u.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.List;
 
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.old.ListViewSearchAdapter;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.FirstPresenter;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.SearchRecipesContract;
 
@@ -33,9 +30,8 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     //searches
     private AutoCompleteTextView searchInput;
     private ImageButton ibOk, ibSearchRecipe;
-    private ListView listView;
+    private RecyclerView listView;
     private LinearLayout sbLayout;
-    private ListViewSearchAdapter adapter;
     //presenters
     private FirstPresenter presenter;
 
@@ -46,19 +42,22 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
         presenter = new FirstPresenter();
         presenter.bindView(StarterActivity.this);
 
-        ibSearch = (ImageButton) findViewById(R.id.btnSearch);
-        ibLastSearched = (ImageButton) findViewById(R.id.ibLastSearched);
-        ibSaved = (ImageButton) findViewById(R.id.btnFavorite);
-        ibAbout = (ImageButton) findViewById(R.id.btnAbout);
-        searchInput = (AutoCompleteTextView) findViewById(R.id.editTextInput);
-        sbLayout = (LinearLayout) findViewById(R.id.searchBarLayout);
-        listView = (ListView) findViewById(R.id.listResults);
+        ibSearch = findViewById(R.id.btnSearch);
+        ibLastSearched = findViewById(R.id.ibLastSearched);
+        ibSaved = findViewById(R.id.btnFavorite);
+        ibAbout = findViewById(R.id.btnAbout);
+        searchInput = findViewById(R.id.editTextInput);
+        sbLayout = findViewById(R.id.searchBarLayout);
+        listView = findViewById(R.id.listResults);
 
-        ibOk = (ImageButton) findViewById(R.id.imageButton);
+        ibOk = findViewById(R.id.imageButton);
+        ibSearchRecipe = findViewById(R.id.ibSearch);
+
+
         if (ibOk != null) {
             ibOk.setImageResource(R.drawable.greenok);
         }
-        ibSearchRecipe = (ImageButton) findViewById(R.id.ibSearch);
+
 
         ibSearch.setOnClickListener(v -> {
             presenter.expandSearchBox();
@@ -80,14 +79,10 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
         ibLastSearched.setOnClickListener(v -> presenter.hideSearchBox());
         ibSaved.setOnClickListener(v -> {
             presenter.hideSearchBox();
-            presenter.clearRecipes();
-            presenter.updateSavedRecipes();
+            presenter.displaySavedRecipes();
         });
         ibAbout.setOnClickListener(v -> presenter.hideSearchBox());
-        listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            Log.i("Clicked", "true " + i);
-            presenter.saveSelectedRecipe(i);
-        });
+
     }
 
     @Override
@@ -105,13 +100,6 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
         Toast.makeText(this, "Please provide some products", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void updateRecipes(List<Recipe> recipes) {
-        Log.i("Update in act", recipes.toString());
-        adapter = new ListViewSearchAdapter(StarterActivity.this, R.layout.customlist, recipes);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onCallError(Throwable t) {
@@ -119,7 +107,9 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     }
 
     @Override
-    public void clearListView() {
-        adapter = null;
+    public void setAdapter(RecipeAdapter adapter) {
+        listView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setAdapter(adapter);
     }
+
 }

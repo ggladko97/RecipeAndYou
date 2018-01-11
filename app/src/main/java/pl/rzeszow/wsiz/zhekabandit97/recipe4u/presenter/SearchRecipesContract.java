@@ -1,8 +1,6 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter;
 
-import java.util.List;
-
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.view.RecipeAdapter;
 
 /**
  * Created by hladlyev on 02.01.2018.
@@ -13,9 +11,9 @@ public interface SearchRecipesContract {
         void hideSearchBox();
         void expandSearchBox();
         void notifyEmptySearch();
-        void updateRecipes(List<Recipe> recipes);
         void onCallError(Throwable t);
-        void clearListView();
+
+        void setAdapter(RecipeAdapter adapter);
     }
 
     interface Presenter extends BasePresenter<View> {

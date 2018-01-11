@@ -5,17 +5,13 @@
     android:elevation="10dp"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
-
-
     <ImageView
         android:id="@+id/imageCustom"
-
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="left|top"
         android:layout_margin="10dp"
         android:descendantFocusability="blocksDescendants" />
-
     <TextView
         android:id="@+id/textCustom"
         android:layout_width="match_parent"
