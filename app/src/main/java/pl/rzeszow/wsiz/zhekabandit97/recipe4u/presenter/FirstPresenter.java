@@ -35,7 +35,7 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
         helper = new FoodApiInterfaceImpl();
         searchParams = new ArrayList<>();
         recipeDao = new RecipeDAOStaticImpl();
-        adapter = new RecipeAdapter(recipeDao, false);
+        adapter = new RecipeAdapter(recipeDao.listrecipes());
     }
 
     @Override
