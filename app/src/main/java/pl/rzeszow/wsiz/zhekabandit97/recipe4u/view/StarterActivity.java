@@ -34,12 +34,14 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     private LinearLayout sbLayout;
     //presenters
     private FirstPresenter presenter;
+    private RecipeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starter);
         presenter = new FirstPresenter();
+        adapter = new RecipeAdapter();
         presenter.bindView(StarterActivity.this);
 
         ibSearch = findViewById(R.id.btnSearch);
