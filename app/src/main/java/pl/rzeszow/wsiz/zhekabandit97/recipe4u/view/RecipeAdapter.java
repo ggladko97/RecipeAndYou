@@ -33,6 +33,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         this.detector = detector;
     }
 
+    public RecipeAdapter() {
+
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         FrameLayout itemView = (FrameLayout) LayoutInflater.from(parent.getContext())
@@ -96,4 +100,5 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
+
 }
