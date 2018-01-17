@@ -12,6 +12,7 @@ import java.util.List;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.FoodApiInterfaceImpl;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAO;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAOStaticImpl;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.RecipeResponse;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.view.RecipeAdapter;
 import retrofit2.Call;
@@ -31,11 +32,11 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
     private List<String> searchParams;
     private RecipeDAO recipeDao;
 
-    public FirstPresenter() {
+    public FirstPresenter(RecipeAdapter adapter) {
         helper = new FoodApiInterfaceImpl();
         searchParams = new ArrayList<>();
         recipeDao = new RecipeDAOStaticImpl();
-        adapter = new RecipeAdapter(recipeDao, false);
+        this.adapter = adapter;
     }
 
     @Override
@@ -74,6 +75,8 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
                 public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                     RecipeResponse body = response.body();
                     recipeDao.addAllRecipesFromLoad(body.getRecipes());
+                    adapter.setRecipes(recipeDao.listrecipes());
+                    adapter.notifyDataSetChanged();
                 }
 
                 @Override
@@ -84,9 +87,15 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
         }
     }
 
+    public void addSavedRecipe(Recipe recipe) {
+        Log.i("RDao", recipeDao.listSavedRecipes().toString());
+        if (!recipeDao.listSavedRecipes().contains(recipe)) {
+            recipeDao.addSavedRecipe(recipe);
+        }
+    }
 
-    public void displaySavedRecipes() {
-      adapter.setSavedMode(true);
-      adapter.notifyDataSetChanged();
+    public void processSavedRecipes() {
+        adapter.setRecipes(recipeDao.listSavedRecipes());
+//        adapter.notifyDataSetChanged();
     }
 }
