@@ -23,21 +23,27 @@ import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
 
     private List<Recipe> recipes;
+    private OnRecipeChangeDetection detector;
 
-    public RecipeAdapter(List <Recipe> recipes) {
+    public RecipeAdapter(List<Recipe> recipes) {
         this.recipes = recipes;
+    }
+
+    public RecipeAdapter(OnRecipeChangeDetection detector) {
+        this.detector = detector;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         FrameLayout itemView = (FrameLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.customlist, parent, false);
-
+        Log.i("ADAPTER", "data is: " + recipes);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
         Recipe recipe = recipes.get(position);
 
         holder.getTt1().setText(recipe.getName());
@@ -49,7 +55,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.getIv1().setOnClickListener(v -> {
             //ToDo: add an interface and implement it in StarterActivity
             // to handle saving recipies. Pass this instance to adapter.
-            recipes.saveRecipe(recipe);
+            if (recipes.size() > 1) {
+                detector.changeRecipes(recipe);
+            }
             Log.i("Adapter", "SAVE " + recipe.toString());
         });
 
@@ -81,8 +89,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         }
     }
 
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
 
-    public void setSavedMode(boolean savedMode) {
-        this.savedMode = savedMode;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }
