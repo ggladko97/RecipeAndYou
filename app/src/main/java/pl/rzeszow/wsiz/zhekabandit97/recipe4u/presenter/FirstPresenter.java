@@ -96,6 +96,6 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
 
     public void processSavedRecipes() {
         adapter.setRecipes(recipeDao.listSavedRecipes());
-//        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 }

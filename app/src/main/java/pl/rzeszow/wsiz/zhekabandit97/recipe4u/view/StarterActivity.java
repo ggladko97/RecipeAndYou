@@ -36,15 +36,13 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     //presenters
     private FirstPresenter presenter;
     private RecipeAdapter adapter;
-    private OnRecipeChangeDetection detector = recipe -> { };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starter);
 
-        adapter = new RecipeAdapter(detector);
+        adapter = new RecipeAdapter(StarterActivity.this);
         presenter = new FirstPresenter(adapter);
         presenter.bindView(StarterActivity.this);
 
@@ -69,6 +67,7 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
 
 
         ibSearch.setOnClickListener(v -> {
+
             presenter.expandSearchBox();
 
             ibOk.setOnClickListener(l -> {
