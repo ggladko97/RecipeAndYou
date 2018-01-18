@@ -67,7 +67,7 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
 
 
         ibSearch.setOnClickListener(v -> {
-
+            adapter.clearDataSet();
             presenter.expandSearchBox();
 
             ibOk.setOnClickListener(l -> {

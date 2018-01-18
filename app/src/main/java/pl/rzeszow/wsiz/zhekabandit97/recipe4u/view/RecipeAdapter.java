@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
@@ -59,9 +60,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.getIv1().setOnClickListener(v -> {
             //ToDo: add an interface and implement it in StarterActivity
             // to handle saving recipies. Pass this instance to adapter.
-
             detector.changeRecipes(recipe);
-
             Log.i("Adapter", "SAVE " + recipe.toString());
         });
 
@@ -73,7 +72,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public void clearDataSet() {
-
+        recipes = new ArrayList<>();
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
