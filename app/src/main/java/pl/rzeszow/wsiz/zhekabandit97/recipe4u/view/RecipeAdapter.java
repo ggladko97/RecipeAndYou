@@ -34,8 +34,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public RecipeAdapter() {
-
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -59,9 +59,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.getIv1().setOnClickListener(v -> {
             //ToDo: add an interface and implement it in StarterActivity
             // to handle saving recipies. Pass this instance to adapter.
-            if (recipes.size() > 1) {
-                detector.changeRecipes(recipe);
-            }
+
+            detector.changeRecipes(recipe);
+
             Log.i("Adapter", "SAVE " + recipe.toString());
         });
 
@@ -70,6 +70,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return recipes == null ? 0 : recipes.size();
+    }
+
+    public void clearDataSet() {
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -98,6 +102,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public void setRecipes(List<Recipe> recipes) {
+        Log.i("AdapterSet: ", recipes.toString());
         this.recipes = recipes;
     }
 
