@@ -15,6 +15,7 @@ import org.json.JSONException;
 import java.io.IOException;
 
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.FirstPresenter;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.SearchRecipesContract;
 
@@ -22,7 +23,7 @@ import pl.rzeszow.wsiz.zhekabandit97.recipe4u.presenter.SearchRecipesContract;
  * Created by hladlyev on 03.01.2018.
  */
 
-public class StarterActivity extends AppCompatActivity implements SearchRecipesContract.View {
+public class StarterActivity extends AppCompatActivity implements SearchRecipesContract.View, OnRecipeChangeDetection {
 
     //root
     private ImageButton ibSearch, ibLastSearched, ibSaved, ibAbout;
@@ -40,8 +41,9 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starter);
-        presenter = new FirstPresenter();
-        adapter = new RecipeAdapter();
+
+        adapter = new RecipeAdapter(StarterActivity.this);
+        presenter = new FirstPresenter(adapter);
         presenter.bindView(StarterActivity.this);
 
         ibSearch = findViewById(R.id.btnSearch);
@@ -50,7 +52,10 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
         ibAbout = findViewById(R.id.btnAbout);
         searchInput = findViewById(R.id.editTextInput);
         sbLayout = findViewById(R.id.searchBarLayout);
+
         listView = findViewById(R.id.listResults);
+        listView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setAdapter(adapter);
 
         ibOk = findViewById(R.id.imageButton);
         ibSearchRecipe = findViewById(R.id.ibSearch);
@@ -62,6 +67,7 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
 
 
         ibSearch.setOnClickListener(v -> {
+
             presenter.expandSearchBox();
 
             ibOk.setOnClickListener(l -> {
@@ -81,7 +87,7 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
         ibLastSearched.setOnClickListener(v -> presenter.hideSearchBox());
         ibSaved.setOnClickListener(v -> {
             presenter.hideSearchBox();
-            presenter.displaySavedRecipes();
+            presenter.processSavedRecipes();
         });
         ibAbout.setOnClickListener(v -> presenter.hideSearchBox());
 
@@ -109,9 +115,7 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     }
 
     @Override
-    public void setAdapter(RecipeAdapter adapter) {
-        listView.setLayoutManager(new LinearLayoutManager(this));
-        listView.setAdapter(adapter);
+    public void changeRecipes(Recipe recipe) {
+        presenter.addSavedRecipe(recipe);
     }
-
 }

@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.R;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAO;
-import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAOStaticImpl;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 
 /**
@@ -22,35 +22,33 @@ import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
 
-    private RecipeDAOStaticImpl recipes;
-    private boolean savedMode = false;
+    private List<Recipe> recipes;
+    private OnRecipeChangeDetection detector;
 
-    public RecipeAdapter(RecipeDAO recipes, boolean savedMode) {
-        this.recipes = (RecipeDAOStaticImpl) recipes;
-        this.savedMode = savedMode;
+    public RecipeAdapter(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public RecipeAdapter(OnRecipeChangeDetection detector) {
+        this.detector = detector;
     }
 
     public RecipeAdapter() {
-
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         FrameLayout itemView = (FrameLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.customlist, parent, false);
-
+        Log.i("ADAPTER", "data is: " + recipes);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Recipe recipe;
 
-        if (savedMode) {
-            recipe = recipes.listSavedRecipes().get(position);
-        } else {
-            recipe = recipes.listrecipes().get(position);
-        }
+        Recipe recipe = recipes.get(position);
 
         holder.getTt1().setText(recipe.getName());
 
@@ -59,7 +57,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                 .fit()
                 .into(holder.getIv1());
         holder.getIv1().setOnClickListener(v -> {
-            recipes.saveRecipe(recipe);
+            //ToDo: add an interface and implement it in StarterActivity
+            // to handle saving recipies. Pass this instance to adapter.
+
+            detector.changeRecipes(recipe);
+
             Log.i("Adapter", "SAVE " + recipe.toString());
         });
 
@@ -67,7 +69,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return recipes.listrecipes().size();
+        return recipes == null ? 0 : recipes.size();
+    }
+
+    public void clearDataSet() {
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -91,12 +97,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         }
     }
 
-
-    public void setSavedMode(boolean savedMode) {
-        this.savedMode = savedMode;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipes(RecipeDAOStaticImpl recipes) {
+    public void setRecipes(List<Recipe> recipes) {
+        Log.i("AdapterSet: ", recipes.toString());
         this.recipes = recipes;
     }
+
 }

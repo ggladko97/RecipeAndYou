@@ -10,7 +10,12 @@ import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 
 public interface RecipeDAO {
     Recipe getRecipeByTitle(String title);
+
     List<Recipe> listrecipes();
 
     void addAllRecipesFromLoad(Recipe[] recipes);
+
+    void addSavedRecipe(Recipe recipe);
+
+    List<Recipe> listSavedRecipes();
 }

@@ -32,18 +32,18 @@ public class RecipeDAOStaticImpl implements RecipeDAO {
 
     @Override
     public void addAllRecipesFromLoad(Recipe[] recipes) {
-        savedRecipes.addAll(Arrays.asList(recipes));
+        recipeMockRepository.addAll(Arrays.asList(recipes));
+    }
+
+    @Override
+    public void addSavedRecipe(Recipe recipe) {
+        savedRecipes.add(recipe);
     }
 
     public static void setRecipeMockRepository(List<Recipe> recipeMockRepository) {
         RecipeDAOStaticImpl.recipeMockRepository = recipeMockRepository;
     }
 
-    public void saveRecipe(Recipe r) {
-        if (!savedRecipes.contains(r)) {
-            savedRecipes.add(r);
-        }
-    }
 
     public List<Recipe> listSavedRecipes() {
         return savedRecipes;
