@@ -11,7 +11,7 @@
         First, type TWO your top ingredients which you want your dish will consist of
     </string>
     <string name="textDesc1">You will be provided with useful tips while typing. You can also try to use your own ingredients </string>
-    <string name="textDesc2" >You will have beautiful recipes, for full description tap one and go online</string>
-    <string name="textDesc3" >Vied recipes are always with you in SAVED. You can easily clean list by long click </string>
-    <string name="textDesc4" >Your last search is completely in LAST SEARCH</string>
+    <string name="textDesc2">You will have beautiful recipes, for full description tap one and go online</string>
+    <string name="textDesc3">Vied recipes are always with you in SAVED. You can easily clean list by long click </string>
+    <string name="textDesc4">Your last search is completely in LAST SEARCH</string>
 </resources>

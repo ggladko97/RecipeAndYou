@@ -90,26 +90,25 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
             presenter.processSavedRecipes();
         });
         ibAbout.setOnClickListener(v -> presenter.hideSearchBox());
-
     }
 
-    @Override
+//    @Override
     public void hideSearchBox() {
         sbLayout.setVisibility(View.GONE);
     }
 
-    @Override
+//    @Override
     public void expandSearchBox() {
         sbLayout.setVisibility(View.VISIBLE);
     }
 
-    @Override
+//    @Override
     public void notifyEmptySearch() {
         Toast.makeText(this, "Please provide some products", Toast.LENGTH_LONG).show();
     }
 
 
-    @Override
+//    @Override
     public void onCallError(Throwable t) {
         Toast.makeText(this, "Error: \n" + t.getMessage(), Toast.LENGTH_LONG).show();
     }

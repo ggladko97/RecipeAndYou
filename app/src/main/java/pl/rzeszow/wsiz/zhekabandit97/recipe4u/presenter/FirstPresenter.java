@@ -15,6 +15,7 @@ import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.dao.RecipeDAOStaticImpl;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.RecipeResponse;
 import pl.rzeszow.wsiz.zhekabandit97.recipe4u.view.RecipeAdapter;
+import pl.rzeszow.wsiz.zhekabandit97.recipe4u.view.StarterActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,7 +26,7 @@ import retrofit2.Response;
 
 public class FirstPresenter implements SearchRecipesContract.Presenter {
 
-    private SearchRecipesContract.View view;
+    private StarterActivity view;
     private RecipeAdapter adapter;
     private String data = "hello world";
     private FoodApiInterfaceImpl helper;
@@ -41,7 +42,7 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
 
     @Override
     public void bindView(SearchRecipesContract.View view) {
-        this.view = view;
+        this.view = (StarterActivity) view;
     }
 
     @Override
@@ -63,7 +64,7 @@ public class FirstPresenter implements SearchRecipesContract.Presenter {
     }
 
     public void processRecipesSearch() throws IOException, JSONException {
-        if (searchParams.size() > 1) view.notifyEmptySearch();
+        if (searchParams.size() < 1) view.notifyEmptySearch();
         else {
             Log.i("Search params = ", searchParams.toString());
             Call<RecipeResponse> recipesByAllTitles = helper.getRecipesByAllTitles(searchParams.toArray(new String[searchParams.size()]));
