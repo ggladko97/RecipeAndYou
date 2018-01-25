@@ -3,6 +3,7 @@ package pl.rzeszow.wsiz.zhekabandit97.recipe4u.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -35,6 +36,32 @@ public class DetailsActivity extends AppCompatActivity implements SearchRecipesC
 
         Intent intent = getIntent();
         Recipe data = (Recipe) intent.getSerializableExtra("data");
+        Log.i("Data", data.toString());
 
+        tvTitle.setText(data.getName());
+        tvPublisher.setText(data.getPublisher());
+        tvDescripton.setText(data.getRate());
+
+        float rate = Float.parseFloat(data.getRate());
+        ratingBar.setRating(rate/20);
+//        Picasso.with(this)
+//                .load(data.getUrl_image())
+//                .fit()
+//                .into(new Target() {
+//                    @Override
+//                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                        background.setBackground( new BitmapDrawable(getResources(),bitmap));
+//                    }
+//
+//                    @Override
+//                    public void onBitmapFailed(Drawable errorDrawable) {
+//                        Log.i("Bitmap", "failed");
+//                    }
+//
+//                    @Override
+//                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//                    }
+//                });
     }
 }

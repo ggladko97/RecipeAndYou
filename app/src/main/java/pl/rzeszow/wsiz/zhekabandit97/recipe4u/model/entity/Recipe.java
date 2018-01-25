@@ -3,10 +3,12 @@ package pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by ggladko97 on 04.12.16.
  */
-public class Recipe {
+public class Recipe implements Serializable {
 
     @SerializedName("title")
     @Expose

@@ -8,4 +8,5 @@ import pl.rzeszow.wsiz.zhekabandit97.recipe4u.model.entity.Recipe;
 
 public interface OnRecipeChangeDetection {
     void changeRecipes(Recipe recipe);
+    void expandRecipe(Recipe recipe);
 }

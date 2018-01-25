@@ -63,6 +63,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             detector.changeRecipes(recipe);
             Log.i("Adapter", "SAVE " + recipe.toString());
         });
+        holder.itemView.setOnClickListener( l -> {
+            detector.expandRecipe(recipe);
+        });
 
     }
 

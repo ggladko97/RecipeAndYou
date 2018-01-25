@@ -1,5 +1,6 @@
 package pl.rzeszow.wsiz.zhekabandit97.recipe4u.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -116,5 +117,12 @@ public class StarterActivity extends AppCompatActivity implements SearchRecipesC
     @Override
     public void changeRecipes(Recipe recipe) {
         presenter.addSavedRecipe(recipe);
+    }
+
+    @Override
+    public void expandRecipe(Recipe recipe) {
+        Intent intent = new Intent(StarterActivity.this, DetailsActivity.class);
+        intent.putExtra("data", recipe);
+        startActivity(intent);
     }
 }
